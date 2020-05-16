@@ -2,7 +2,7 @@ importPackage(org.json);
 const scriptName="who.js";
 
 //const scriptName="who.js";
-const adminRoom = ['포고 모임방','Risen',"제주방 사진링크봇",'제주 포고 단톡방들 비번 알려주는방','제주 화북 삼양(삼화) 포켓몬고','테스트테스트']
+const adminRoom = ['포고 모임방','Risen',"제주방 사진링크봇",'제주 포고 단톡방들 비번 알려주는방','화북방','pogo admin']
 var dataValue = null; 
 var cnt = 0;
 
@@ -38,7 +38,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB) {
 				  }
 				  
 				  if(check) {
-					   replier.reply("단톡방아이디: \n " +result);
+					   replier.reply("포고 닉네임: \n " +result);
 				  }else {
 					  replier.reply("등록된 아이디가 아닙니다. ");
 				  }

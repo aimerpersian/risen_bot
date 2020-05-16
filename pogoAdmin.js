@@ -3,7 +3,7 @@ const scriptName="pogoAdmin.js";
 const sdcard = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
 const nickFile = "data.txt";
 const nickFile2 = "data2.txt";
-const adminRoom = ['포고 모임방', '제주 포고 단톡방들 비번 알려주는방','Risen','제주 화북 삼양(삼화) 포켓몬고','테스트테스트','가가가']
+const adminRoom = ['포고 모임방', '제주 포고 단톡방들 비번 알려주는방','Risen','테스트테스트','pogo admin']
 
 function response(room, msg, sender, isGroupChat, replier, imageDB) {
    
@@ -15,8 +15,20 @@ function response(room, msg, sender, isGroupChat, replier, imageDB) {
    var similarcheck = false; 
    var similarNick = "";
    
-  var hellomsg = room == "제주 포고 단톡방들 비번 알려주는방" ? "\n 상단의 공지를 읽어주세요." : "" ;
-  var hellomsg2 = room == "제주 포고 단톡방들 비번 알려주는방" ? "\n 본방에 동일한  닉네임이 있습니다. 닉네임을 변경해 주시고 상단의 공지를 읽어주세요 " : "" ;
+  var hellomsg = "\n 다음 과정에 답변해주시면 비번 안내해드립니다. \n"  +
+  "1) 어디서 오셨나요~? (제주도민은 활동 지역) \n\n" +
+  "2) 이방을 어떻게 알게 되었나요?\n" +
+       "  (톡방 지인 소개라면 지인의 닉네임)\n\n" +
+  "3) 어느지역에서 활동 할 예정인가요?\n" +
+   "  여행객이라면 여행 기간을 알려주세요:)\n\n" + 
+  "4) 본인의 대략적인 나이대\n\n" +
+  "5) 트레이너 화면 캡쳐해 올려주세요.\n" +
+  "(포고 필드에서 왼쪽 하단 트레이너 얼굴 클릭해서 나오는 화면을 말합니다)\n\n" +
+  "6) 제주방 닉양식에 맞춰 카톡프로필 수정해주세요\n" +
+   "[Lv.00/한글닉네임]활동지역.팀이름\n" +
+  "예) [Lv.09/영실바위]노형동.미스틱\n\n"+
+ " 7) 관리자의 안내를 기다려 주세요. 사람이 언제나 있는게 아니라 오래 걸릴 수 있습니다.\n" ;
+  var hellomsg2 = "\n 본방에 동일한  닉네임이 있습니다. 닉네임을 변경해 주시고 상단의 공지를 읽어주세요 " ;
   
   if(room != '포고 모임방'){
 	if(command.indexOf("안녕하세요") > -1 || command.indexOf("반갑습니다") > -1) {
@@ -25,11 +37,15 @@ function response(room, msg, sender, isGroupChat, replier, imageDB) {
 				  replier.reply("안녕하세요 " + sender.substring(7,sender.indexOf('\]')) +"님" + hellomsg);
 			} 
 	  } else {
+        if(room == 'pogo admin') {
 		  if( !isSameNick(sender)) {
 			  replier.reply("안녕하세요 " + sender +"님" + hellomsg );
 		  } else{
 			  replier.reply("안녕하세요 " + sender +"님" + "\n" + hellomsg2);
-		  }
+        }
+      } else {
+         replier.reply("안녕하세요." + sender + "님");
+      }
 	  }
 	}
   }
@@ -181,6 +197,9 @@ else if(command === "@디비생성") {
   else if(command == "@양식") {
     	var msg = "0성레이드\n장소:\n부화시간:\n시작시간:\n인원:";
     	replier.reply(msg);
+   }
+   else if(command == "@절차") {
+      replier.reply(hellomsg);
    }
   }
    
