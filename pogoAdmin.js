@@ -31,7 +31,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB) {
   var hellomsg2 = "\n 본방에 동일한  닉네임이 있습니다. 닉네임을 변경해 주시고 상단의 공지를 읽어주세요 " ;
   
   if(room != '포고 모임방'){
-	if(command.indexOf("안녕하세요") > -1 || command.indexOf("반갑습니다") > -1) {
+	if(command.indexOf("안녕하세요") > -1 || command.indexOf("반갑습니다") > -1 || command.indexOf("안녕") > -1) {
 	  if(/^\[Lv.\d+\/\S+\]\S+/.exec(sender.replace(/\s/gi,"")) != null) {
 		  if(!isSameNick(sender.substring(7,sender.indexOf("\]")))) {
 				  replier.reply("안녕하세요 " + sender.substring(7,sender.indexOf('\]')) +"님" + hellomsg);
