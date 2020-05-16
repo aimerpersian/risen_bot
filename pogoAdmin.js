@@ -49,7 +49,7 @@ function response(room, msg, sender, isGroupChat, replier, imageDB) {
 	  }
 	}
   }
-   if(msg == "@업데이트" && getNickName(sender) == "라이슨" || getNickName(sender) == "관리자" || getNickName(sender) == "Risen"){
+   if(msg == "@업데이트" && getNickName(sender) == ("라이슨" || "Risen")){
       // let cnt = 0;
       // let idx = 0;
       // let check = false;
