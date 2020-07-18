@@ -94,24 +94,23 @@ else if(command === "@디비생성") {
 		if(argument != undefined) {
 	         var userInfo = argument.replace(/\s/gi,"");
 	         var searchNick = /^\[Lv.\d+\/\S+\]\S+/.exec(userInfo);
-	         var validAccount = funci
-				if(searchNick != null) {
-			         let dataArray = readData(nickFile);
-			         let sameNick = dataArray.find(nick=>{
-			             return nick.substring(7,nick.indexOf('\]')) === argument.substring(7,argument.indexOf('\]'))
-					})
+            if(searchNick != null) {
+                 let dataArray = readData(nickFile);
+                 let sameNick = dataArray.find(nick=>{
+                     return nick.substring(7,nick.indexOf('\]')) === argument.substring(7,argument.indexOf('\]'))
+                })
 
-					if(sameNick == undefined) {
-						DataBase.appendDataBase(nickFile,argument + "#$");
-						Log.d(sender +"가" + argument +  "을 등록");
-			 			replier.reply("등록완료");
-					} else {
-						replier.reply("중복된 닉네임");
-					}
+                if(sameNick == undefined) {
+                    DataBase.appendDataBase(nickFile,argument + "#$");
+                    Log.d(sender +"가" + argument +  "을 등록");
+                    replier.reply("등록완료");
+                } else {
+                    replier.reply("중복된 닉네임");
+                }
 
-		         }else {
-		        	 replier.reply("닉네임 형식이 틀립니다. 올바른 형식으로 입력하세요. [Lv.00/닉네임]제주");
-		         }
+             }else {
+                 replier.reply("닉네임 형식이 틀립니다. 올바른 형식으로 입력하세요. [Lv.00/닉네임]제주");
+             }
 		}else {
 
 			replier.reply("등록할 닉네임을 입력해 주세요 ");
@@ -221,10 +220,7 @@ function getNickName(nick){
 
 }
 
-function validAccount(userInfo, ignored) {
-    let userInfo.replace(i)
 
-}
 function isSameNick(nickname) {
 	  let dataArray = readData(nickFile);
 	  var same = false;
