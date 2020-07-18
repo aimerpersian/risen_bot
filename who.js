@@ -2,7 +2,7 @@ importPackage(org.json);
 const scriptName="who.js";
 
 //const scriptName="who.js";
-const adminRoom = ['포고 모임방','Risen',"제주방 사진링크봇",'제주 포고 단톡방들 비번 알려주는방','화북방','pogo admin']
+const adminRoom = ['포고 모임방','Risen',"제주방 사진링크봇",'제주 포고 단톡방들 비번 알려주는방','화북방','pogo admin','관리자방']
 var dataValue = null; 
 var cnt = 0;
 

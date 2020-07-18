@@ -3,7 +3,8 @@ const scriptName="pogoAdmin.js";
 const sdcard = android.os.Environment.getExternalStorageDirectory().getAbsolutePath();
 const nickFile = "data.txt";
 const nickFile2 = "data2.txt";
-const adminRoom = ['포고 모임방', '제주 포고 단톡방들 비번 알려주는방','Risen','테스트테스트','pogo admin']
+const accountFile = "account.txt";
+const adminRoom = ['포고 모임방', '제주 포고 단톡방들 비번 알려주는방','Risen','테스트테스트','pogo admin','관리자방']
 
 function response(room, msg, sender, isGroupChat, replier, imageDB) {
 
@@ -15,19 +16,39 @@ function response(room, msg, sender, isGroupChat, replier, imageDB) {
    var similarcheck = false;
    var similarNick = "";
 
-  var hellomsg = "\n 다음 과정에 답변해주시면 비번 안내해드립니다. \n"  +
-  "1) 어디서 오셨나요~? (제주도민은 활동 지역) \n\n" +
+  var hellomsg =
+  ※입장을 위한 필수절차※
+ 1) 어디서 오셨나요?
+(도민-활동지역,
+ 여행객-숙소근처와 여행기간)
+
+2) 이방을 어떻게 알게 되었나요?
+  (지인 소개 시 활동 닉네임 기재)
+
+3) 본인의 대략적인 나이대
+
+4) 트레이너 화면 캡쳐
+(게임 내 메인화면 왼쪽 하단 트레이너 얼굴 클릭해서 나오는 화면 캡쳐)
+
+5) 제주방 양식에 맞춘 프로필 설정
+[Lv.00/한글닉네임]활동지역.팀이름
+(비번 안내자 프로필 참고)
+
+6) 관리자의 안내를 기다려 주세요. 사람이 언제나 있는게 아니라 오래 걸릴 수 있습니다.
+
+
+  "\n ※입장을 위한 필수절차※ \n"  +
+  "1) 어디서 오셨나요~? (제주도민은 활동 지역) \n" +
+    "\n (도민-활동지역, 여행객-숙소근처와 여행기간) \n\n"  +
   "2) 이방을 어떻게 알게 되었나요?\n" +
-       "  (톡방 지인 소개라면 지인의 닉네임)\n\n" +
-  "3) 어느지역에서 활동 할 예정인가요?\n" +
-   "  여행객이라면 여행 기간을 알려주세요:)\n\n" +
-  "4) 본인의 대략적인 나이대\n\n" +
-  "5) 트레이너 화면 캡쳐해 올려주세요.\n" +
-  "(포고 필드에서 왼쪽 하단 트레이너 얼굴 클릭해서 나오는 화면을 말합니다)\n\n" +
-  "6) 제주방 닉양식에 맞춰 카톡프로필 수정해주세요\n" +
-   "[Lv.00/한글닉네임]활동지역.팀이름\n" +
-  "예) [Lv.09/영실바위]노형동.미스틱\n\n"+
- " 7) 관리자의 안내를 기다려 주세요. 사람이 언제나 있는게 아니라 오래 걸릴 수 있습니다.\n" ;
+       "  (지인 소개 시 활동 닉네임 기재)\n\n" +
+  "3) 본인의 대략적인 나이대\n\n" +
+  "4) 트레이너 화면 캡쳐\n" +
+  "4) (게임 내 메인화면 왼쪽 하단 트레이너 얼굴 클릭해서 나오는 화면 캡쳐)\n\n" +
+  "5) 제주방 양식에 맞춘 프로필 설정\n" +
+  "[Lv.00/한글닉네임]활동지역.팀이름\n" +
+  "(비번 안내자 프로필 참고)\n\n" +
+  "6) 관리자의 안내를 기다려 주세요. 사람이 언제나 있는게 아니라 오래 걸릴 수 있습니다.\n" +
   var hellomsg2 = "\n 본방에 동일한  닉네임이 있습니다. 닉네임을 변경해 주시고 상단의 공지를 읽어주세요 " ;
 
   if(room != '포고 모임방'){
@@ -94,8 +115,7 @@ else if(command === "@디비생성") {
 		if(argument != undefined) {
 	         var userInfo = argument.replace(/\s/gi,"");
 	         var searchNick = /^\[Lv.\d+\/\S+\]\S+/.exec(userInfo);
-
-
+	         var validAccount = funci
 				if(searchNick != null) {
 			         let dataArray = readData(nickFile);
 			         let sameNick = dataArray.find(nick=>{
@@ -205,6 +225,14 @@ else if(command === "@디비생성") {
 
 }
 
+
+// [Lv.40/단톡아이디] 연동 #게임아이디1 #게임아이디2
+function checkGameAccount(userInfo) {
+    return userInfo.split("#").length > 0
+}
+
+
+
 function getNickName(nick){
 	 if(/^\[Lv.\d+\/\S+\]\S+/.exec(nick.replace(/\s/gi,"")) != null) {
 	   return  nick.substring(7,nick.indexOf('\]'));
@@ -214,6 +242,10 @@ function getNickName(nick){
 
 }
 
+function validAccount(userInfo, ignored) {
+    let userInfo.replace(i)
+
+}
 function isSameNick(nickname) {
 	  let dataArray = readData(nickFile);
 	  var same = false;
